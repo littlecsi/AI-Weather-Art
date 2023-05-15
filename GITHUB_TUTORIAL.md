@@ -73,11 +73,11 @@ Vim Commands
 
 ### Git Bash Prompt Example
 ```
-SWTube@SWTube ~/git_tutorial
+lc2120@lc2120 ~/git_tutorial
 $ git init
-Initialized empty Git repository in c:/Users/SWTube/git_tutorial/.git/
+Initialized empty Git repository in c:/Users/lc2120/git_tutorial/.git/
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ vim hello.py
 ```
 
@@ -87,15 +87,15 @@ print("Hello World")
 ```
 
 ```
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ cat hello.py
 print("Hello World")
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ python hello.py
 Hello World
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git status
 On branch master
 
@@ -108,10 +108,10 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git add hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git status
 On branch master
 
@@ -122,7 +122,7 @@ Changes to be committed:
 
         new file:   hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git commit
 ```
 
@@ -136,27 +136,27 @@ $ git commit
  1 file changed, 1 insertion(+)
  create mode 100644 hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git branch
   master
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git branch hotfix
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git branch
   hotfix
   master
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git checkout hotfix
 Switched to branch hotfix
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ ls
 hello.py
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ vim hello.py
 ```
 
@@ -167,17 +167,17 @@ print("Tell Your World")
 ```
 
 ```
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ cat hello.py
 print("Hello World")
 print("Tell Your World")
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ python hello.py
 Hello World
 Tell Your World
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git status
 On branch hotfix
 Changes not staged for commit:
@@ -188,54 +188,54 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git commit -am "added output 'Tell Your World'"
 [hotfix 13d3028] added output 'Tell Your World'|
  1 file changed, 1 insertion(+)
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git status
 On branch hotfix
 nothing to commit, working directory clean
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git checkout master
 Switched to branch 'master'
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git status
 On branch master
 nothing to commit, working directory clean
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ ls
 hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ cat hello.py
 print("Hello World")
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ python hello.py
 Hello World
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git merge hotfix
 Updating 4204f1c..13d3028
 Fast-forward
  hello.py | 1
  1 file changed, 1 insertion(+)
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ ls
 hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ cat hello.py
 print("Hello World")
 print("Tell Your World")
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ python hello.py
 Hello World
 Tell Your World
@@ -249,27 +249,27 @@ print("Tell His World")
 ```
 
 ```
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ python hello.py
 Hello World
 Tell Your World
 Tell His World
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git commit
 On branch master
 Changes not staged for commit:
     modified    hello.py
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git commit -am "added output 'Tell His World'"
 ...
 
-SWTube@SWTube ~/git_tutorial (master)
+lc2120@lc2120 ~/git_tutorial (master)
 $ git checkout hotfix
 ...
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ vim hello.py
 ```
 
@@ -281,18 +281,18 @@ print("Tell Her World")
 ```
 
 ```
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git commit -am "added output 'Tell Her World'"
 ...
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ touch .gitignore
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ ls
 hello.py
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ ls -a
 ./  .gitignore  hello.py
 ```
@@ -304,10 +304,10 @@ Search Operating Systems, IDEs, Programming Language
 Copy the details into `.gitignore` file
 
 ```
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git add .gitignore
 
-SWTube@SWTube ~/git_tutorial (hotfix)
+lc2120@lc2120 ~/git_tutorial (hotfix)
 $ git commit -m "added ',gitignore' file"
 ```
 
