@@ -161,3 +161,6 @@ cython_debug/
 
 # API python file
 api.py
+
+# macOS system
+.DS_Store
