@@ -1,0 +1,31 @@
+name: AI-Weather-Art
+channels:
+  - defaults
+dependencies:
+  - bzip2=1.0.8=h1de35cc_0
+  - ca-certificates=2023.01.10=hecd8cb5_0
+  - libffi=3.4.4=hecd8cb5_0
+  - ncurses=6.4=hcec6c5f_0
+  - openssl=1.1.1t=hca72f7f_0
+  - pip=23.0.1=py310hecd8cb5_0
+  - python=3.10.11=h218abb5_2
+  - readline=8.2=hca72f7f_0
+  - setuptools=67.8.0=py310hecd8cb5_0
+  - sqlite=3.41.2=h6c40b1e_0
+  - tk=8.6.12=h5d9f67b_0
+  - tzdata=2023c=h04d1e81_0
+  - wheel=0.38.4=py310hecd8cb5_0
+  - xz=5.4.2=h6c40b1e_0
+  - zlib=1.2.13=h4dc903c_0
+  - pip:
+      - certifi==2023.5.7
+      - charset-normalizer==3.1.0
+      - ibm-cloud-sdk-core==3.16.6
+      - ibm-watson==7.0.0
+      - idna==3.4
+      - pyjwt==2.7.0
+      - python-dateutil==2.8.2
+      - requests==2.31.0
+      - six==1.16.0
+      - urllib3==1.26.16
+      - websocket-client==1.1.0
