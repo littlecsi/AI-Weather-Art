@@ -1,62 +1,36 @@
-# ================================================================================
-# ============================== IBM =============================================
-# ================================================================================
+# ============================== Watson ==============================
+
+import api
+
+from os.path import join, dirname
+import json
 
 from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-import api
-
-authenticator = IAMAuthenticator(api.api_key)
+# Authentication
+authenticator = IAMAuthenticator(api.stt_key)
 speech_to_text = SpeechToTextV1(
     authenticator=authenticator
 )
 
-speech_to_text.set_service_url('https://api.us-east.speech-to-text.watson.cloud.ibm.com')
+speech_to_text.set_service_url(api.stt_url)
 
-# ================================================================================
-# ============================== Recording =======================================
-# ================================================================================
+# Requesting STT
+with open(join(dirname(__file__), '../sample', 'audio-file2.flac'), 'rb') as audio_file:
+    speech_recognition_results = speech_to_text.recognize(
+        audio=audio_file,
+        content_type='audio/flac',
+        word_alternatives_threshold=0.9,
+        # keywords=['colorado', 'tornado', 'tornadoes'],
+        # keywords_threshold=0.5
+    ).get_result()
 
-import pyaudio
-import wave
+# Getting Transcript
+transcript = speech_recognition_results["results"][0]["alternatives"][0]["transcript"]
+print(type(transcript))
 
-chunk = 1024  # Record in chunks of 1024 samples
-sample_format = pyaudio.paInt16  # 16 bits per sample
-channels = 2
-fs = 44100  # Record at 44100 samples per second
-seconds = 3
-filename = "output.wav"
+# print(json.dumps(speech_recognition_results, indent=2))
 
-p = pyaudio.PyAudio()  # Create an interface to PortAudio
-
-print('Recording')
-
-stream = p.open(format=sample_format,
-                channels=channels,
-                rate=fs,
-                frames_per_buffer=chunk,
-                input=True)
-
-frames = []  # Initialize array to store frames
-
-# Store data in chunks for 3 seconds
-for i in range(0, int(fs / chunk * seconds)):
-    data = stream.read(chunk)
-    frames.append(data)
-
-# Stop and close the stream 
-stream.stop_stream()
-stream.close()
-# Terminate the PortAudio interface
-p.terminate()
-
-print('Finished recording')
-
-# Save the recorded data as a WAV file
-wf = wave.open(filename, 'wb')
-wf.setnchannels(channels)
-wf.setsampwidth(p.get_sample_size(sample_format))
-wf.setframerate(fs)
-wf.writeframes(b''.join(frames))
-wf.close()
+# speech_model = speech_to_text.get_model('en-GB_BroadbandModel').get_result()
+# print(json.dumps(speech_model, indent=2))
