@@ -5,7 +5,7 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 auth = IAMAuthenticator(tts_key)
 text_to_speech = TextToSpeechV1(authenticator=auth)
 text_to_speech.set_service_url(tts_url)
-text_to_speech.disable_ssl_verification
+
 
 
 with open((dirname(__file__), '../sample', 'audio-file2.mp3'), 'wb') as audio_file: 
