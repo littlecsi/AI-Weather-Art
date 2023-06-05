@@ -1,3 +1,4 @@
+import  os
 
 from ibm_watson import TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -11,7 +12,7 @@ text_to_speech.set_service_url(tts_url)
 
 
 
-with open((dirname(__file__), '../transcript', 'text.txt'), 'r') as text_file: 
+with open(os.path.join(dirname(__file__), '../transcript', 'text.txt'), 'r') as text_file: 
     text = text_file.read()
     text_results = text_to_speech.synthesize(text, accept="audio/mp3", voice="en_US_AllisonVoice").get_result()
 with open("audio-file2.mp3", "wb") as audio_file:
