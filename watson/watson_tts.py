@@ -11,6 +11,3 @@ text_to_speech.set_service_url(tts_url)
 with open((dirname(__file__), '../sample', 'audio-file2.mp3'), 'wb') as audio_file: 
     text_results = text_to_speech.synthesise(audio = audio_file, accept ="audio/mp3", voice = "en_US_AllisonVoice").get_result()
     audio_file.write(text_results.content)
-
-with open((dirname(__file__), '../sample', 'audio-file2.mp3'), 'r') as f:
-     text = f.readlines()
