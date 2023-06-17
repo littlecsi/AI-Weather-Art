@@ -87,3 +87,27 @@ def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
     transcript = speech_recognition_results['results'][0]['alternatives'][0]['transcript']
 
     return transcript
+
+def create_session(assistant: AssistantV2) -> str:
+    """
+    Creates a session for communicating with Watson Assistant.
+
+    :param AssistantV2 assistant: Watson Assistant service client.
+    """
+    if not isinstance(assistant, AssistantV2):
+        raise Exception(
+            'assistant is not a derived class of AssistantV2'
+        )
+    
+    response = assistant.create_session(
+        assistant_id=api.environment_id
+    ).get_result()
+    
+    session_id = response['session_id']
+
+    api.session_id = session_id
+
+    return session_id
+
+def message(assistant, environment_id, session_id, msg):
+    return None
