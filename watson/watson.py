@@ -8,9 +8,12 @@ from ibm_watson import SpeechToTextV1
 from ibm_watson import AssistantV2
 from ibm_watson import TextToSpeechV1
 
+from pydub import AudioSegment
+from pydub.playback import play
+
 def authenticate_stt() -> SpeechToTextV1:
     """
-    Construct a new client for the Speech to Text service.
+    Constructs a new client for the Speech to Text service.
 
     :return: A `SpeechToTextV1` with access to Watson STT service.
     :rtype: SpeechToTextV1
@@ -26,7 +29,7 @@ def authenticate_stt() -> SpeechToTextV1:
 
 def authenticate_assistant() -> AssistantV2:
     """
-    Construct a new client for the Assistant service.
+    Constructs a new client for the Assistant service.
 
     :return: An `AssistantV2` with access to Watson Assistant service.
     :rtype: AssistantV2
@@ -43,7 +46,7 @@ def authenticate_assistant() -> AssistantV2:
 
 def authenticate_tts() -> TextToSpeechV1:
     """
-    Construct a new client for the Text to Speech service.
+    Constructs a new client for the Text to Speech service.
 
     :return: A `TextToSpeechV1` with access to Watson TTS service.
     :rtype: TextToSpeechV1
@@ -63,6 +66,8 @@ def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
 
     :param str filename: filename of the audio file.
     :param stt SpeechToTextV1: Watson STT service client.
+    :return: A `str` of user's voice transcript.
+    :rtype: str
     """
     if not isinstance(filename, str):
         raise Exception(
@@ -93,6 +98,8 @@ def create_session(assistant: AssistantV2) -> str:
     Creates a session for communicating with Watson Assistant.
 
     :param AssistantV2 assistant: Watson Assistant service client.
+    :return: When successfully created, the session id is returned as `str`.
+    :rtype: str
     """
     if not isinstance(assistant, AssistantV2):
         raise Exception(
@@ -109,5 +116,78 @@ def create_session(assistant: AssistantV2) -> str:
 
     return session_id
 
-def message(assistant, environment_id, session_id, msg):
+def message(assistant: AssistantV2, environment_id: str, session_id: str, msg: str) -> str:
+    """
+    Send user input to an assistant and receive a response, 
+    with conversation state (including context data) stored by Watson Assistant 
+    for the duration of the session.
+
+    :param AssistantV2 assistant: Watson Assistant service client.
+    :param str environment_id: `str` form of Watson Assistant environment_id.
+    :param str session_id: `str` form of Watson Assistant session_id.
+    :param str msg: `str` form of message that user asks to Watson Assistant.
+    :return: response of type `str` from Watson Assistant.
+    :rtype: str
+    """
+    if not isinstance(assistant):
+        raise Exception(
+            'assistant is not a derived class of AssistantV2'
+        )
+    if not isinstance(environment_id, str):
+        raise Exception(
+            'environment_id is not a derived class of str'
+        )
+    if not isinstance(session_id, str):
+        raise Exception(
+            'session_id is not a derived class of str'
+        )
+    if not isinstance(msg, str):
+        raise Exception(
+            'msg is not a derived class of str'
+        )
+
+    response = assistant.message(
+        assistant_id=api.environment_id,
+        session_id=api.session_id,
+        input={
+            'message_type': 'text',
+            'text': msg
+        }
+    ).get_result()
+
+    response = response['output']['generic'][0]['text']
+
+    return response
+
+def synthesise(tts: TextToSpeechV1, msg: str):
+    """
+    Synthesizes text to audio that is spoken in the specified voice. 
+    The service bases its understanding of the language for the input text on the specified voice.
+    Use a voice that matches the language of the input text.
+
+    :param TextToSpeechV1 tts: Watson TTS service client.
+    :param 
+    """
+    if not isinstance(tts, TextToSpeechV1):
+        raise Exception(
+            'tts is not a derived class of TextToSpeechV1'
+        )
+    if not isinstance(msg, str):
+        raise Exception(
+            'msg is not a derived class of str'
+        )
+
+    with open(join(dirname(__file__), '../sample', 'response.wav'), 'wb') as audio_file:
+        audio_file.write(
+            tts.synthesize(
+                msg,
+                # voice='en-US_MichaelV3Voice',
+                accept='audio/wav'
+            ).get_result().content)
+        
+    # Load the audio file
+    audio = AudioSegment.from_wav(join(dirname(__file__), '../sample', 'response.wav'))
+    # Play the audio file
+    play(audio)
+
     return None
