@@ -8,9 +8,6 @@ from ibm_watson import SpeechToTextV1
 from ibm_watson import AssistantV2
 from ibm_watson import TextToSpeechV1
 
-from pydub import AudioSegment
-from pydub.playback import play
-
 def authenticate_stt() -> SpeechToTextV1:
     """
     Constructs a new client for the Speech to Text service.
@@ -184,10 +181,5 @@ def synthesise(tts: TextToSpeechV1, msg: str):
                 # voice='en-US_MichaelV3Voice',
                 accept='audio/wav'
             ).get_result().content)
-        
-    # Load the audio file
-    audio = AudioSegment.from_wav(join(dirname(__file__), '../sample', 'response.wav'))
-    # Play the audio file
-    play(audio)
 
     return None
