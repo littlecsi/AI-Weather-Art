@@ -76,17 +76,20 @@ def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
         )
     
     # requesting watson stt service
-    with open(join(dirname(__file__), '../sample', 'stt-audio.flac'), 'rb') as audio_file:
+    with open(join(dirname(__file__), '../sample', 'audio.wav'), 'rb') as audio_file:
         speech_recognition_results = stt.recognize(
             audio=audio_file,
-            content_type='audio/flac',
+            content_type='audio/wav',
             word_alternatives_threshold=0.9,
             model='en-GB_Multimedia',
             low_latency=True
         ).get_result()
 
     # extracting transcript from results
-    transcript = speech_recognition_results['results'][0]['alternatives'][0]['transcript']
+    if len(speech_recognition_results['results']) != 0:
+        transcript = speech_recognition_results['results'][0]['alternatives'][0]['transcript']
+    else:
+        return ''
 
     return transcript
 
