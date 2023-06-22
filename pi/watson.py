@@ -57,7 +57,7 @@ def authenticate_tts() -> TextToSpeechV1:
 
     return text_to_speech
 
-def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
+def get_transcript(stt:SpeechToTextV1) -> str:
     """
     Sends audio and returns transcription results for a recognition request.
 
@@ -66,10 +66,6 @@ def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
     :return: A `str` of user's voice transcript.
     :rtype: str
     """
-    if not isinstance(filename, str):
-        raise Exception(
-            'filename is not a derived class of str'
-        )
     if not isinstance(stt, SpeechToTextV1):
         raise Exception(
             'stt is not a derived class of SpeechToTextV1'
@@ -93,7 +89,7 @@ def get_transcript(filename: str, stt: SpeechToTextV1) -> str:
 
     return transcript
 
-def create_session(assistant: AssistantV2) -> str:
+def create_session(assistant:AssistantV2) -> str:
     """
     Creates a session for communicating with Watson Assistant.
 
@@ -116,7 +112,7 @@ def create_session(assistant: AssistantV2) -> str:
 
     return session_id
 
-def message(assistant: AssistantV2, environment_id: str, session_id: str, msg: str) -> str:
+def message(assistant:AssistantV2, msg:str, environment_id:str=api.environment_id, session_id:str=api.session_id) -> str:
     """
     Send user input to an assistant and receive a response, 
     with conversation state (including context data) stored by Watson Assistant 
@@ -129,7 +125,7 @@ def message(assistant: AssistantV2, environment_id: str, session_id: str, msg: s
     :return: response of type `str` from Watson Assistant.
     :rtype: str
     """
-    if not isinstance(assistant):
+    if not isinstance(assistant, AssistantV2):
         raise Exception(
             'assistant is not a derived class of AssistantV2'
         )
@@ -159,7 +155,7 @@ def message(assistant: AssistantV2, environment_id: str, session_id: str, msg: s
 
     return response
 
-def synthesise(tts: TextToSpeechV1, msg: str):
+def synthesise(tts:TextToSpeechV1, msg:str):
     """
     Synthesizes text to audio that is spoken in the specified voice. 
     The service bases its understanding of the language for the input text on the specified voice.
