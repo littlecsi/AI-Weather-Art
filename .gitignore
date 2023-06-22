@@ -161,6 +161,9 @@ cython_debug/
 
 # API python file
 api.py
+watson/assistant.py
+watson/stt.py
+watson/watson_tts.py
 
 # macOS system
 .DS_Store
