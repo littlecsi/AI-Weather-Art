@@ -79,7 +79,16 @@ def record():
     wf = wave.open(filename, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(p.get_sample_size(sample_format))
+    wf.setframerate(fs)
     wf.writeframes(b''.join(frames))
     wf.close()
 
     return None
+
+def main():
+    record()
+
+    return None
+
+if __name__ == '__main__':
+    main()

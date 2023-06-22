@@ -76,7 +76,7 @@ def get_transcript(stt:SpeechToTextV1) -> str:
         speech_recognition_results = stt.recognize(
             audio=audio_file,
             content_type='audio/wav',
-            word_alternatives_threshold=0.9,
+            # word_alternatives_threshold=0.9,
             model='en-GB_Multimedia',
             low_latency=True
         ).get_result()
