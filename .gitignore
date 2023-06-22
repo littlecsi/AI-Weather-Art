@@ -164,3 +164,7 @@ api.py
 
 # macOS system
 .DS_Store
+
+# sample audio
+sample/audio.wav
+sample/response.wav
