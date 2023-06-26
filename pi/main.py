@@ -6,8 +6,12 @@ sys.path.append('watson')
 
 import watson
 import sound
+import bbc
 
 def main():
+    # Initialise variables
+    news = []
+
     # Initialise watson clients
     stt = watson.authenticate_stt()
     kairos = watson.authenticate_assistant()
@@ -23,14 +27,21 @@ def main():
 
             # Get transcript
             transcript = watson.get_transcript(stt)
+            print('transcript:', transcript)
 
-            # Get response
-            response = watson.message(kairos, transcript)
+            # Get response according to the user's request:
+            if 'weather' in transcript:
+                response = watson.message(kairos, transcript)
+            elif 'news' in transcript:
+                news = bbc.get_top3_news()
+                response = "Today's top 3 most watched news are as follows: " + news[0] + ', ' + news[1] + ' and ' + news[2] 
+            else:
+                response = 'Could you repeat that please?'
 
             # Change to wav file
             watson.synthesise(tts, response)
 
-            # Play response
+            # Play response 
             sound.play()
 
     return None
