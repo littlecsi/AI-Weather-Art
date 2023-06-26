@@ -171,3 +171,5 @@ watson/watson_tts.py
 # sample audio
 sample/audio.wav
 sample/response.wav
+sample/recording.wav
+sample/response.wav
