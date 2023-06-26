@@ -72,7 +72,7 @@ def get_transcript(stt:SpeechToTextV1) -> str:
         )
     
     # requesting watson stt service
-    with open(join(dirname(__file__), '../sample', 'audio.wav'), 'rb') as audio_file:
+    with open(join(dirname(__file__), '../sample', 'recording.wav'), 'rb') as audio_file:
         speech_recognition_results = stt.recognize(
             audio=audio_file,
             content_type='audio/wav',
