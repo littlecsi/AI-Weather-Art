@@ -29,9 +29,12 @@ def play():
     data = wf.readframes(chunk)
 
     # Play the sound by writing the audio data to the stream
-    while data != '':
-        stream.write(data)
-        data = wf.readframes(chunk)
+    while True:
+        if data != '':
+            stream.write(data)
+            data = wf.readframes(chunk)
+        if data == b'':
+            break
     
     # Close and terminate the stream
     stream.close()
@@ -86,7 +89,7 @@ def record():
     return None
 
 def main():
-    record()
+    play()
 
     return None
 
