@@ -11,6 +11,7 @@ import bbc
 def main():
     # Initialise variables
     news = []
+    weather = []
 
     # Initialise watson clients
     stt = watson.authenticate_stt()
@@ -32,6 +33,12 @@ def main():
             # Get response according to the user's request:
             if 'weather' in transcript:
                 response = watson.message(kairos, transcript)
+
+                weather = response.split(',')
+                if 'tomorrow' in transcript:
+                    response = "Tomorrow's weather is " + weather[4] + ", temperature is " + weather[5] + " degrees celsius, with " + weather[6] + "% chance of rain and the wind speed is " + weather[7] + " miles per hour."
+                else:
+                    response = "Today's weather is " + weather[0] + ", temperature is " + weather[1] + " degrees celsius, with " + weather[2] + "% chance of rain and the wind speed is " + weather[7] + " miles per hour."                
             elif 'news' in transcript:
                 news = bbc.get_top3_news()
                 response = "Today's top 3 most watched news are as follows: " + news[0] + ', ' + news[1] + ' and ' + news[2] 
